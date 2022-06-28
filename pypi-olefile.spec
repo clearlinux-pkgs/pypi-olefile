@@ -4,7 +4,7 @@
 #
 Name     : pypi-olefile
 Version  : 0.46
-Release  : 48
+Release  : 49
 URL      : https://files.pythonhosted.org/packages/34/81/e1ac43c6b45b4c5f8d9352396a14144bba52c8fec72a80f425f6a4d653ad/olefile-0.46.zip
 Source0  : https://files.pythonhosted.org/packages/34/81/e1ac43c6b45b4c5f8d9352396a14144bba52c8fec72a80f425f6a4d653ad/olefile-0.46.zip
 Summary  : Python package to parse, read and write Microsoft OLE2 files (Structured Storage or Compound Document, Microsoft Office)
@@ -60,7 +60,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656390538
+export SOURCE_DATE_EPOCH=1656392119
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
