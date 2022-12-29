@@ -4,7 +4,7 @@
 #
 Name     : pypi-olefile
 Version  : 0.46
-Release  : 54
+Release  : 55
 URL      : https://files.pythonhosted.org/packages/34/81/e1ac43c6b45b4c5f8d9352396a14144bba52c8fec72a80f425f6a4d653ad/olefile-0.46.zip
 Source0  : https://files.pythonhosted.org/packages/34/81/e1ac43c6b45b4c5f8d9352396a14144bba52c8fec72a80f425f6a4d653ad/olefile-0.46.zip
 Summary  : Python package to parse, read and write Microsoft OLE2 files (Structured Storage or Compound Document, Microsoft Office)
@@ -14,6 +14,9 @@ Requires: pypi-olefile-license = %{version}-%{release}
 Requires: pypi-olefile-python = %{version}-%{release}
 Requires: pypi-olefile-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 
 %description
 =======
@@ -60,12 +63,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656392119
+export SOURCE_DATE_EPOCH=1672294727
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$FFLAGS -fno-lto "
-export FFLAGS="$FFLAGS -fno-lto "
-export CXXFLAGS="$CXXFLAGS -fno-lto "
+export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
@@ -82,8 +85,8 @@ popd
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pypi-olefile
-cp %{_builddir}/olefile-0.46/LICENSE.txt %{buildroot}/usr/share/package-licenses/pypi-olefile/39139a785b98452f34e53f1dd9916f6a6d0a8ebf
-cp %{_builddir}/olefile-0.46/doc/License.rst %{buildroot}/usr/share/package-licenses/pypi-olefile/b26f237ee1e7c24a2f98969fee5228ce94b4d8b7
+cp %{_builddir}/olefile-%{version}/LICENSE.txt %{buildroot}/usr/share/package-licenses/pypi-olefile/39139a785b98452f34e53f1dd9916f6a6d0a8ebf || :
+cp %{_builddir}/olefile-%{version}/doc/License.rst %{buildroot}/usr/share/package-licenses/pypi-olefile/b26f237ee1e7c24a2f98969fee5228ce94b4d8b7 || :
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
